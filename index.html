@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>House of Us — 3D</title>
+<link rel="stylesheet" href="css/style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="stage">
+
+  <div id="three-container"></div>
+  <div class="key-chip" id="key-chip" aria-hidden="true"></div>
+  <button class="daynight-toggle" id="daynight-toggle" aria-label="Toggle day and night">
+    <span id="daynight-icon">&#9728;</span>
+  </button>
+  <label class="world-time" id="world-time-control" for="world-time">
+    <span class="time-caption"><span id="time-of-day">AFTERNOON</span><span id="time-readout">2:00 PM</span></span>
+    <input id="world-time" type="range" min="5" max="23" step="0.25" value="14" aria-label="Set the time of day">
+  </label>
+
+  <div id="loading">
+    <div class="loading-inner">
+      <div class="spinner"></div>
+      <div>Building your world…</div>
+    </div>
+  </div>
+
+  <!-- QUOTE TOAST -->
+  <div id="quote-toast" aria-live="polite"></div>
+
+  <!-- HINT -->
+  <div id="hint">Scroll or pinch to zoom · Drag to orbit</div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <button class="hud-btn" data-hotspot="bookshelf">Books</button><button class="hud-btn" data-hotspot="tv">Television</button><button class="hud-btn" data-hotspot="garden">Garden</button><button class="hud-btn" id="zoom-toggle">Zoom in</button>
+    <button class="hud-btn" id="end-visit">End this visit</button>
+  </div>
+
+  <!-- ARRIVAL OVERLAY -->
+  <div class="overlay" id="arrival-overlay">
+    <div class="names" id="arrival-names"></div>
+    <p class="tagline">Welcome to your little world.</p>
+    <button class="enter-btn" id="enter-btn">Explore our world</button>
+  </div>
+
+  <!-- ENDING OVERLAY -->
+  <div class="overlay hidden" id="ending-overlay">
+    <p class="ending-line d1">Home was never a place.</p>
+    <p class="ending-line d2">It was always us.</p>
+    <p class="names ending-line d3" id="ending-names"></p>
+    <p class="ending-line d4" id="ending-message"></p>
+  </div>
+
+  <!-- BOOK MODAL -->
+  <div class="modal-backdrop" id="book-modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Book">
+      <button class="modal-close" id="book-close" aria-label="Close">&times;</button>
+      <h3 class="book-title" id="book-title"></h3>
+      <div class="book-sub" id="book-sub"></div>
+      <div id="book-pages"></div>
+      <div class="book-nav">
+        <button id="book-prev">Prev</button>
+        <div class="page-dots" id="book-dots"></div>
+        <button id="book-next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TV MODAL -->
+  <div class="modal-backdrop tv-modal" id="tv-modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Television">
+      <button class="modal-close" id="tv-close" aria-label="Close">&times;</button>
+      <div class="tv-screen" id="tv-screen">Select a video to play</div>
+      <div class="video-list" id="video-list"></div>
+    </div>
+  </div>
+
+  <!-- FLOWER MODAL -->
+  <div class="modal-backdrop" id="flower-modal">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Choose your flower">
+      <button class="modal-close" id="flower-close" aria-label="Close">&times;</button>
+      <h3 class="book-title">Your garden</h3>
+      <div class="book-sub">Pick the flower that belongs to you two</div>
+      <div class="flower-options" id="flower-options"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
