@@ -13,6 +13,57 @@
   }
 }
 </script>
+<!-- CHERMO OWNERSHIP START -->
+<meta name="copyright" content="Copyright © 2026 CHERMO. Original template material only.">
+<script data-chermo-ownership="1">/* CHERMO ownership presentation. No tracking, network access or global copy restrictions. */
+(function () {
+  'use strict';
+  const notice = {"brand":"CHERMO","holder":"CHERMO","year":2026,"version":1,"scope":"Original template designs, artwork, written content, animations, layouts and software created for CHERMO. Customer photographs, personal messages and separately identified third-party material are excluded.","terms":"Authorized customers may personalize, view and share their purchased memory experience. Copying, redistributing, reselling or reusing the original reusable template files or substantial parts of them for another product or service requires permission.","limits":"These measures discourage casual copying. Material displayed in a browser can still be captured or recreated. Third-party fonts, libraries and assets retain their respective rights and licenses."};
+  function mount() {
+    if (document.querySelector('chermo-ownership')) return;
+    const host = document.createElement('chermo-ownership');
+    host.style.cssText = 'display:block;position:relative;clear:both;flex:0 0 auto;max-width:100%;z-index:0';
+    const root = host.attachShadow({ mode: 'open' });
+    const style = document.createElement('style');
+    style.textContent = 'details{box-sizing:border-box;margin:0;padding:12px 16px;text-align:center;font:12px/1.6 system-ui,sans-serif;color:inherit;background:transparent}summary{cursor:pointer;min-height:28px;align-content:center;list-style-position:inside;overflow-wrap:anywhere}summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}p{max-width:70ch;margin:10px auto;text-align:left;overflow-wrap:anywhere}';
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = `Copyright © ${notice.year} ${notice.holder}. All rights reserved.`;
+    details.append(summary);
+    for (const text of [notice.scope, notice.terms, notice.limits]) {
+      const p = document.createElement('p'); p.textContent = text; details.append(p);
+    }
+    root.append(style, details); document.body.append(host);
+    // Scroll-locked cinematic scenes cannot reach a footer below the viewport.
+    // Use a small corner disclosure there, avoiding existing interactive controls.
+    const scrollLocked = [document.body, document.documentElement].some(el => ['hidden','clip'].includes(getComputedStyle(el).overflowY));
+    if (scrollLocked) {
+      const obstacles = [...document.querySelectorAll('button,a,input,textarea,select,[tabindex="0"]')].map(el => el.getBoundingClientRect()).filter(r => r.width && r.height);
+      const positions = [{bottom:8,right:8},{bottom:8,left:8},{top:8,right:8},{top:8,left:8}];
+      const position = positions.find(p => {
+        const x=p.left??Math.max(0,innerWidth-168), y=p.top??Math.max(0,innerHeight-44);
+        return !obstacles.some(r=>r.left<x+160&&r.right>x&&r.top<y+36&&r.bottom>y);
+      }) || positions[0];
+      host.style.position='fixed';host.style.zIndex='30';host.style.maxWidth='min(340px,calc(100vw - 16px))';
+      for(const [key,value] of Object.entries(position))host.style[key]=`${value}px`;
+      summary.textContent=`© ${notice.year} ${notice.brand} · Rights`;
+      style.textContent+='details{padding:4px 9px;border:1px solid GrayText;border-radius:4px;max-height:65svh;overflow:auto;color:CanvasText;background:Canvas}summary{min-height:24px}';
+      const p=document.createElement('p');p.textContent=`Copyright © ${notice.year} ${notice.holder}. All rights reserved.`;details.insertBefore(p,summary.nextSibling);
+    }
+    // Only explicitly marked, original presentation art is affected. Inputs,
+    // customer photos, page gestures, copy commands and context menus are untouched.
+    document.addEventListener('dragstart', event => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest('input,textarea,[contenteditable="true"],a,button,[data-customer-content]')) return;
+      if (target.closest('[data-chermo-artwork]')) event.preventDefault();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
+  else mount();
+})();
+</script>
+<!-- CHERMO OWNERSHIP END -->
 </head>
 <body>
 
